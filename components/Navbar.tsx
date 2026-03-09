@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
             <img
   src="/logo-newstyle-parrucchieri.png"
   alt="New Style Parrucchieri"
-  className="max-h-[64px] md:max-h-[80px] w-auto"
+  className="max-h-[64px] md:max-h-[180px] w-auto"
 />
           </div>
 
