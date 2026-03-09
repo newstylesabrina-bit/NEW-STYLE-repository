@@ -35,8 +35,7 @@ const Navbar: React.FC = () => {
               src={logo}
               alt="New Style Parrucchieri" 
               className="max-h-[64px] md:max-h-[80px] w-auto transition-transform duration-300 group-hover:scale-105"
-              referrerPolicy="no-referrer"
-            />
+                        />
           </div>
 
           <div className="hidden lg:flex items-center gap-8">
