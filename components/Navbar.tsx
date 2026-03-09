@@ -30,7 +30,6 @@ const Navbar: React.FC = () => {
             className="flex items-center cursor-pointer group" 
             onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
           >
-            <img 
             <img
   src="/logo-newstyle-parrucchieri.png"
   alt="New Style Parrucchieri"
