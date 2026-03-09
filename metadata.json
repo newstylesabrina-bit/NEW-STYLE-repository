@@ -1,0 +1,7 @@
+{
+  "name": "ORIGINALE: ORIGINALE:New Style Parrucchieri - Mansuè",
+  "description": "New Style Parrucchieri di Sabrina Carretta a Mansuè (TV). Specialisti in dETOX CUTE, analisi con microcamera e percorsi personalizzati.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
