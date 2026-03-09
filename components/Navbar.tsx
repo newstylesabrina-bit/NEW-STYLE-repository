@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
             onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
           >
             <img 
-              src={logo}
+             src="/logo-newstyle-parrucchieri.png"
               alt="New Style Parrucchieri" 
               className="max-h-[64px] md:max-h-[80px] w-auto transition-transform duration-300 group-hover:scale-105"
                         />
