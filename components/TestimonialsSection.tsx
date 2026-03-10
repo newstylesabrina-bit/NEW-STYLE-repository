@@ -6,7 +6,7 @@ import LuxuryText from './LuxuryText';
 
 const TestimonialsSection: React.FC = () => {
   return (
-    <section id="recensioni" className="py-24">
+    <section id="recensioni" className="py-12 md:py-20">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-4">Feedback</span>
