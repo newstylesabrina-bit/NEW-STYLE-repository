@@ -12,7 +12,6 @@ const PackagesSection: React.FC = () => {
 
   return (
     <section id="pacchetti" className="py-12 md:py-20 bg-ivory relative overflow-hidden">
-      {/* Decorative background element */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-sand/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -25,7 +24,7 @@ const PackagesSection: React.FC = () => {
           </LuxuryText>
           <p className="text-stone font-light leading-relaxed">
             Scegli il livello di cura più adatto alle tue esigenze. Ogni pacchetto è studiato
-            per offrire un'esperienza di benessere totale.
+            per offrire un&apos;esperienza di benessere totale.
           </p>
         </div>
 
@@ -39,9 +38,11 @@ const PackagesSection: React.FC = () => {
               transition={{ delay: idx * 0.1 }}
               className={`
                 relative p-8 md:p-10 rounded-[40px] border flex flex-col h-full transition-all duration-500
-                ${pkg.isPremium
-                  ? 'bg-espresso text-ivory border-gold shadow-2xl md:scale-105 z-10'
-                  : 'bg-white text-espresso border-sand shadow-sm hover:shadow-md'}
+                ${
+                  pkg.isPremium
+                    ? 'bg-espresso text-ivory border-gold shadow-2xl md:scale-105 z-10'
+                    : 'bg-white text-espresso border-sand shadow-sm hover:shadow-md'
+                }
               `}
             >
               {pkg.isPremium && (
@@ -53,7 +54,11 @@ const PackagesSection: React.FC = () => {
 
               <div className="mb-8">
                 <h3 className="font-serif text-3xl mb-2">{pkg.name}</h3>
-                <p className={`text-sm leading-relaxed ${pkg.isPremium ? 'text-ivory/70' : 'text-stone'}`}>
+                <p
+                  className={`text-sm leading-relaxed ${
+                    pkg.isPremium ? 'text-ivory/70' : 'text-stone'
+                  }`}
+                >
                   {pkg.description}
                 </p>
               </div>
@@ -84,9 +89,11 @@ const PackagesSection: React.FC = () => {
                 onClick={() => setSelectedPackage(pkg)}
                 className={`
                   w-full py-4 rounded-2xl text-center text-[10px] uppercase tracking-widest font-bold transition-all flex items-center justify-center gap-2
-                  ${pkg.isPremium
-                    ? 'bg-gold text-white hover:bg-white hover:text-espresso'
-                    : 'bg-espresso text-ivory hover:bg-gold'}
+                  ${
+                    pkg.isPremium
+                      ? 'bg-gold text-white hover:bg-white hover:text-espresso'
+                      : 'bg-espresso text-ivory hover:bg-gold'
+                  }
                 `}
               >
                 Scopri di più
@@ -96,11 +103,9 @@ const PackagesSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Modal */}
       <AnimatePresence>
         {selectedPackage && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
-            {/* Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -109,33 +114,31 @@ const PackagesSection: React.FC = () => {
               className="absolute inset-0 bg-espresso/80 backdrop-blur-sm"
             />
 
-            {/* Modal container */}
             <motion.div
               initial={{ opacity: 0, scale: 0.96, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 20 }}
-              className="relative w-full max-w-5xl rounded-[32px] md:rounded-[40px] overflow-hidden shadow-2xl max-h-[92vh] min-h-[85vh] md:min-h-0"
+              className="relative w-full max-w-5xl rounded-[32px] md:rounded-[40px] overflow-hidden shadow-2xl h-[92vh] md:h-auto md:max-h-[90vh]"
             >
-              {/* Close Button */}
               <button
                 onClick={closeModal}
-                className="absolute top-5 right-5 z-20 p-3 rounded-full bg-white/90 text-espresso hover:bg-gold hover:text-white transition-all shadow-lg"
+                className="absolute top-5 right-5 z-30 p-3 rounded-full bg-ivory/95 text-espresso hover:bg-gold hover:text-white transition-all shadow-lg"
               >
                 <X size={24} />
               </button>
 
-              {/* MOBILE LAYOUT */}
+              {/* MOBILE */}
               <div className="md:hidden absolute inset-0">
                 <img
                   src={selectedPackage.image}
                   alt={selectedPackage.name}
                   className="w-full h-full object-cover scale-110"
                 />
-                <div className="absolute inset-0 bg-espresso/60 backdrop-blur-md" />
+                <div className="absolute inset-0 bg-espresso/65 backdrop-blur-lg" />
               </div>
 
               <div className="md:hidden relative z-10 h-[92vh] flex items-center justify-center p-4">
-                <div className="w-full h-[82vh] bg-ivory/96 backdrop-blur-xl rounded-[30px] shadow-2xl overflow-y-auto px-6 pt-8 pb-8">
+                <div className="w-full h-[84vh] bg-ivory/97 backdrop-blur-xl rounded-[30px] shadow-2xl overflow-y-auto px-6 pt-8 pb-8">
                   <div className="mb-6 pr-14">
                     <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-2">
                       Dettagli Percorso
@@ -167,7 +170,10 @@ const PackagesSection: React.FC = () => {
                       </h4>
                       <ul className="space-y-3">
                         {selectedPackage.features.map((feature, i) => (
-                          <li key={i} className="flex items-start gap-3 text-sm text-stone">
+                          <li
+                            key={i}
+                            className="flex items-start gap-3 text-sm text-stone leading-relaxed"
+                          >
                             <div className="w-1.5 h-1.5 rounded-full bg-gold mt-2 shrink-0" />
                             <span>{feature}</span>
                           </li>
@@ -199,10 +205,9 @@ const PackagesSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* DESKTOP LAYOUT */}
+              {/* DESKTOP */}
               <div className="hidden md:flex relative w-full max-h-[90vh] bg-ivory">
-                {/* Left Column: Image */}
-                <div className="w-full md:w-2/5 h-64 md:h-auto relative">
+                <div className="hidden md:block w-full md:w-2/5 h-64 md:h-auto relative">
                   <img
                     src={selectedPackage.image}
                     alt={selectedPackage.name}
@@ -210,7 +215,6 @@ const PackagesSection: React.FC = () => {
                   />
                 </div>
 
-                {/* Right Column: Content */}
                 <div className="w-full md:w-3/5 p-8 md:p-12 overflow-y-auto custom-scrollbar">
                   <div className="mb-8">
                     <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-2">
