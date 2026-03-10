@@ -106,118 +106,122 @@ const PackagesSection: React.FC = () => {
       <AnimatePresence>
         {selectedPackage && (
           <div className="fixed inset-0 z-[100]">
-            {/* Overlay */}
+            {/* overlay cliccabile */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeModal}
-              className="absolute inset-0 bg-espresso/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/70"
             />
 
-            {/* MOBILE FULL SCREEN */}
+            {/* MOBILE: FULL SCREEN REALE */}
             <div className="md:hidden absolute inset-0">
-  <motion.div
-    initial={{ opacity: 0, y: 24 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: 24 }}
-    transition={{ duration: 0.25 }}
-    className="relative w-full h-full"
-  >
-    {/* Background image */}
-    <div className="absolute inset-0">
-      <img
-        src={selectedPackage.image}
-        alt={selectedPackage.name}
-        className="w-full h-full object-cover scale-110"
-      />
-      <div className="absolute inset-0 bg-espresso/78 backdrop-blur-xl" />
-    </div>
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 18 }}
+                transition={{ duration: 0.25 }}
+                className="relative w-full h-full"
+              >
+                {/* immagine solo sfondo */}
+                <div className="absolute inset-0">
+                  <img
+                    src={selectedPackage.image}
+                    alt={selectedPackage.name}
+                    className="w-full h-full object-cover scale-110"
+                  />
+                  <div className="absolute inset-0 bg-espresso/80 backdrop-blur-xl" />
+                </div>
 
-    {/* Close button */}
-    <button
-      onClick={closeModal}
-      className="absolute top-4 right-4 z-30 p-3 rounded-full bg-ivory/95 text-espresso hover:bg-gold hover:text-white transition-all shadow-lg"
-    >
-      <X size={24} />
-    </button>
-
-    {/* Full-screen content */}
-    <div className="relative z-10 h-full overflow-y-auto">
-      <div className="min-h-full bg-ivory/97 backdrop-blur-xl px-6 pt-16 pb-8">
-        <div className="mb-8 pr-14">
-          <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-2">
-            Dettagli Percorso
-          </span>
-          <h2 className="text-4xl font-serif text-espresso mb-2 leading-tight">
-            {selectedPackage.name}
-          </h2>
-          <p className="text-xl text-gold font-serif">{selectedPackage.price}</p>
-        </div>
-
-        <div className="space-y-7">
-          <div>
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-2">
-              Per chi è
-            </h4>
-            <p className="text-stone leading-relaxed text-[17px]">
-              {selectedPackage.forWho}
-            </p>
-          </div>
-
-          <div>
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-2">
-              Problema che risolve
-            </h4>
-            <p className="text-stone leading-relaxed text-[17px]">
-              {selectedPackage.problem}
-            </p>
-          </div>
-
-          <div>
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-2">
-              Cosa facciamo in salone
-            </h4>
-            <ul className="space-y-3">
-              {selectedPackage.features.map((feature, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-3 text-[16px] text-stone leading-relaxed"
+                {/* chiudi */}
+                <button
+                  onClick={closeModal}
+                  className="absolute top-4 right-4 z-30 p-3 rounded-full bg-ivory/95 text-espresso shadow-lg"
                 >
-                  <div className="w-1.5 h-1.5 rounded-full bg-gold mt-2.5 shrink-0" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+                  <X size={24} />
+                </button>
 
-          <div className="p-5 rounded-3xl bg-sand/40 border border-sand">
-            <h4 className="text-[10px] uppercase tracking-widest font-bold text-espresso mb-2">
-              Mantenimento a casa
-            </h4>
-            <p className="text-[16px] text-stone italic leading-relaxed">
-              {selectedPackage.homeCare}
-            </p>
-          </div>
+                {/* contenuto vero */}
+                <div className="relative z-10 h-full overflow-y-auto">
+                  <div className="min-h-full px-6 pt-16 pb-8 text-ivory">
+                    <div className="max-w-xl">
+                      <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-3">
+                        Dettagli Percorso
+                      </span>
 
-          <div className="pt-2">
-            <a
-              href={selectedPackage.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full py-4 rounded-2xl bg-espresso text-ivory text-[11px] uppercase tracking-widest font-bold flex items-center justify-center gap-3 shadow-xl"
-            >
-              PRENOTA QUESTO TRATTAMENTO
-              <ArrowRight size={16} />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </motion.div>
-</div>
+                      <h2 className="text-4xl font-serif leading-tight mb-2">
+                        {selectedPackage.name}
+                      </h2>
 
-            {/* DESKTOP MODAL */}
+                      <p className="text-2xl text-gold font-serif mb-8">
+                        {selectedPackage.price}
+                      </p>
+
+                      <div className="space-y-8">
+                        <div>
+                          <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-2">
+                            Per chi è
+                          </h4>
+                          <p className="text-[18px] leading-relaxed text-ivory/95">
+                            {selectedPackage.forWho}
+                          </p>
+                        </div>
+
+                        <div>
+                          <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-2">
+                            Problema che risolve
+                          </h4>
+                          <p className="text-[18px] leading-relaxed text-ivory/95">
+                            {selectedPackage.problem}
+                          </p>
+                        </div>
+
+                        <div>
+                          <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-3">
+                            Cosa facciamo in salone
+                          </h4>
+                          <ul className="space-y-3">
+                            {selectedPackage.features.map((feature, i) => (
+                              <li
+                                key={i}
+                                className="flex items-start gap-3 text-[17px] leading-relaxed text-ivory/95"
+                              >
+                                <div className="w-1.5 h-1.5 rounded-full bg-gold mt-3 shrink-0" />
+                                <span>{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div className="p-5 rounded-3xl bg-white/10 border border-white/15 backdrop-blur-md">
+                          <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-2">
+                            Mantenimento a casa
+                          </h4>
+                          <p className="text-[16px] italic leading-relaxed text-ivory/95">
+                            {selectedPackage.homeCare}
+                          </p>
+                        </div>
+
+                        <div className="pt-2 pb-4">
+                          <a
+                            href={selectedPackage.whatsappUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full py-4 rounded-2xl bg-gold text-white text-[11px] uppercase tracking-widest font-bold flex items-center justify-center gap-3 shadow-xl"
+                          >
+                            PRENOTA QUESTO TRATTAMENTO
+                            <ArrowRight size={16} />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* DESKTOP */}
             <div className="hidden md:flex absolute inset-0 items-center justify-center p-6">
               <motion.div
                 initial={{ opacity: 0, scale: 0.96, y: 20 }}
