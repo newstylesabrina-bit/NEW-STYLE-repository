@@ -79,7 +79,7 @@ const ServicesSection: React.FC = () => {
                 <img src={selectedService.image} className="w-full h-full object-cover" alt="" />
               </div>
               
-              <div className="w-full md:w-1/2 p-8 md:p-12 overflow-y-auto">
+              <div className="hidden md:block md:w-1/2 aspect-[3/4] md:aspect-auto">
                 <LuxuryText as="h3" className="text-3xl mb-4">{selectedService.title}</LuxuryText>
                 
                 <div className="space-y-6 text-stone text-sm">
