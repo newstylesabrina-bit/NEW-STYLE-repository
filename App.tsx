@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import ElegantBackground from './components/ElegantBackground';
-import CustomCursor from './components/CustomCursor';
 import AIConsultantChat from './components/AIConsultantChat';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
