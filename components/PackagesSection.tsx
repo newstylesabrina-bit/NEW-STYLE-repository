@@ -13,8 +13,7 @@ const PackagesSection: React.FC = () => {
   return (
    <section id="pacchetti" className="py-12 md:py-20 bg-ivory relative">
       <div className="absolute top-0 right-0 w-96 h-96 bg-sand/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative">
         <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
           <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-4">
             Esperienze Complete
