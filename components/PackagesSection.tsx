@@ -42,8 +42,8 @@ const PackagesSection: React.FC = () => {
               `}
             >
               {pkg.isPremium && (
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gold text-white px-4 py-1 rounded-full text-[10px] uppercase tracking-widest font-bold flex items-center gap-2">
-                  <Sparkles size={20} /> Consigliato
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gold text-white px-4 py-1 rounded-full text-[18px] uppercase tracking-widest font-bold flex items-center gap-2">
+                  <Sparkles size={18} /> Consigliato
                 </div>
               )}
 
