@@ -19,9 +19,11 @@ const PackagesSection: React.FC = () => {
           <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-4">
             Esperienze Complete
           </span>
+
           <LuxuryText as="h2" className="text-4xl md:text-5xl mb-6">
             I Nostri Percorsi
           </LuxuryText>
+
           <p className="text-stone font-light leading-relaxed">
             Scegli il livello di cura più adatto alle tue esigenze. Ogni pacchetto è studiato
             per offrire un&apos;esperienza di benessere totale.
@@ -106,7 +108,6 @@ const PackagesSection: React.FC = () => {
       <AnimatePresence>
         {selectedPackage && (
           <div className="fixed inset-0 z-[100]">
-            {/* Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -118,94 +119,11 @@ const PackagesSection: React.FC = () => {
             {/* MOBILE */}
             <div className="md:hidden absolute inset-0 z-10 flex items-center justify-center p-3">
               <motion.div
-  initial={{ opacity: 0, y: 24 }}
-  animate={{ opacity: 1, y: 0 }}
-  exit={{ opacity: 0, y: 24 }}
-  transition={{ duration: 0.25 }}
-  className="relative w-full max-w-[420px] h-[85vh] rounded-[32px] bg-[#f4f0ea] shadow-2xl overflow-hidden grid grid-rows-[140px_1fr]"
->
-  <button
-    onClick={closeModal}
-    className="absolute top-4 right-4 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-[#f7f3ed] text-black/80 shadow-md"
-    aria-label="Chiudi"
-  >
-    <X size={24} />
-  </button>
-
-  <div className="relative overflow-hidden">
-    {selectedPackage.image && (
-      <img
-        src={selectedPackage.image}
-        alt={selectedPackage.name}
-        className="h-full w-full object-cover object-center"
-      />
-    )}
-  </div>
-
-  <div className="overflow-y-auto overflow-x-hidden bg-[#f4f0ea]">
-    <div className="px-6 pt-5 pb-12 text-[#5f5a55]">
-      <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] block mb-3">
-        Dettagli Percorso
-      </span>
-
-      <h2 className="text-[34px] leading-[1.08] font-serif text-[#2c221c] mb-3">
-        {selectedPackage.name}
-      </h2>
-
-      <p className="text-2xl font-serif text-[#b08a57] mb-7">
-        {selectedPackage.price}
-      </p>
-
-      <div className="mb-7">
-        <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
-          Per chi è
-        </h4>
-        <p className="text-[16px] leading-relaxed">{selectedPackage.forWho}</p>
-      </div>
-
-      <div className="mb-7">
-        <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
-          Problema che risolve
-        </h4>
-        <p className="text-[16px] leading-relaxed">{selectedPackage.problem}</p>
-      </div>
-
-      <div className="mb-7">
-        <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-4">
-          Cosa facciamo in salone
-        </h4>
-        <div className="space-y-3">
-          {selectedPackage.features.map((feature, i) => (
-            <div key={i} className="flex items-start gap-3">
-              <Check size={18} className="mt-1 shrink-0 text-[#b08a57]" />
-              <p className="text-[16px] leading-relaxed">{feature}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="mb-8 p-5 rounded-3xl bg-sand/30 border border-sand">
-        <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
-          Mantenimento a casa
-        </h4>
-        <p className="text-[15px] leading-relaxed italic text-[#5f5a55]">
-          {selectedPackage.homeCare}
-        </p>
-      </div>
-
-      <a
-        href={selectedPackage.whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={closeModal}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#2c221c] px-6 py-4 text-sm font-medium text-white"
-      >
-        Prenota questo trattamento
-        <ArrowRight size={18} />
-      </a>
-    </div>
-  </div>
-</motion.div>
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 24 }}
+                transition={{ duration: 0.25 }}
+                className="relative w-full max-w-[420px] h-[85vh] rounded-[32px] bg-[#f4f0ea] shadow-2xl overflow-hidden grid grid-rows-[140px_1fr]"
               >
                 <button
                   onClick={closeModal}
@@ -215,17 +133,17 @@ const PackagesSection: React.FC = () => {
                   <X size={24} />
                 </button>
 
-                {selectedPackage.image && (
-                  <div className="relative shrink-0 h-[20vh] min-h-[120px] max-h-[160px] w-full overflow-hidden rounded-t-[32px]">
+                <div className="relative overflow-hidden">
+                  {selectedPackage.image && (
                     <img
                       src={selectedPackage.image}
                       alt={selectedPackage.name}
                       className="h-full w-full object-cover object-center"
                     />
-                  </div>
-                )}
+                  )}
+                </div>
 
-                <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden bg-[#f4f0ea]">
+                <div className="overflow-y-auto overflow-x-hidden bg-[#f4f0ea]">
                   <div className="px-6 pt-5 pb-12 text-[#5f5a55]">
                     <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] block mb-3">
                       Dettagli Percorso
@@ -243,14 +161,18 @@ const PackagesSection: React.FC = () => {
                       <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
                         Per chi è
                       </h4>
-                      <p className="text-[16px] leading-relaxed">{selectedPackage.forWho}</p>
+                      <p className="text-[16px] leading-relaxed">
+                        {selectedPackage.forWho}
+                      </p>
                     </div>
 
                     <div className="mb-7">
                       <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
                         Problema che risolve
                       </h4>
-                      <p className="text-[16px] leading-relaxed">{selectedPackage.problem}</p>
+                      <p className="text-[16px] leading-relaxed">
+                        {selectedPackage.problem}
+                      </p>
                     </div>
 
                     <div className="mb-7">
