@@ -114,7 +114,7 @@ const PackagesSection: React.FC = () => {
               </button>
 
               {/* Left Column: Image */}
-              <div className="hidden md:flex md:w-2/5 relative">
+              <div className="w-full md:w-2/5 h-32 md:h-auto relative">
                 <img 
                   src={selectedPackage.image} 
                   alt={selectedPackage.name}
