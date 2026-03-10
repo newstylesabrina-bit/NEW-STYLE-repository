@@ -116,7 +116,7 @@ const PackagesSection: React.FC = () => {
               className="absolute inset-0 bg-espresso/80 backdrop-blur-sm"
             />
 
-            {/* MOBILE SOLO TESTO */}
+            {/* MOBILE: SOLO TESTO */}
             <div className="md:hidden absolute inset-0 z-10 flex items-center justify-center p-3">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -194,7 +194,7 @@ const PackagesSection: React.FC = () => {
               </motion.div>
             </div>
 
-            {/* DESKTOP CON IMMAGINE */}
+            {/* DESKTOP MODAL */}
             <div className="hidden md:flex absolute inset-0 items-center justify-center p-6">
               <motion.div
                 initial={{ opacity: 0, scale: 0.96, y: 20 }}
