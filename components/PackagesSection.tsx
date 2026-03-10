@@ -129,14 +129,14 @@ const PackagesSection: React.FC = () => {
                 <img
                   src={selectedPackage.image}
                   alt={selectedPackage.name}
-                  className="w-full h-full object-cover scale-105 blur-sm"
+                  className="w-full h-full object-cover scale-110"
                 />
-                <div className="absolute inset-0 bg-espresso/55 backdrop-blur-[2px]" />
+                <div className="absolute inset-0 bg-espresso/60 backdrop-blur-md" />
               </div>
 
-              <div className="md:hidden relative z-10 flex items-end h-[92vh] p-4">
-                <div className="w-full bg-ivory/95 backdrop-blur-md rounded-[30px] shadow-2xl max-h-[72vh] overflow-y-auto px-6 pt-6 pb-8">
-                  <div className="mb-6">
+              <div className="md:hidden relative z-10 h-[92vh] flex items-center justify-center p-4">
+                <div className="w-full h-[82vh] bg-ivory/96 backdrop-blur-xl rounded-[30px] shadow-2xl overflow-y-auto px-6 pt-8 pb-8">
+                  <div className="mb-6 pr-14">
                     <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-2">
                       Dettagli Percorso
                     </span>
