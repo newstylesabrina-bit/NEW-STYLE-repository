@@ -115,111 +115,108 @@ const PackagesSection: React.FC = () => {
               className="absolute inset-0 bg-black/70"
             />
 
-            {/* MOBILE: FULL SCREEN REALE */}
-            <div className="md:hidden absolute inset-0">
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 18 }}
-                transition={{ duration: 0.25 }}
-                className="relative w-full h-full"
-              >
-                {/* immagine solo sfondo */}
-                <div className="absolute inset-0">
-                  <img
-                    src={selectedPackage.image}
-                    alt={selectedPackage.name}
-                    className="w-full h-full object-cover scale-110"
-                  />
-                  <div className="absolute inset-0 bg-espresso/80 backdrop-blur-xl" />
+            {/* MOBILE MODAL CORRETTO */}
+<div className="md:hidden absolute inset-0 z-10 flex items-center justify-center p-4">
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: 20 }}
+    transition={{ duration: 0.25 }}
+    className="relative w-full max-h-[92vh] overflow-hidden rounded-[32px] bg-[#f4f0ea] shadow-2xl"
+  >
+    <button
+      onClick={closeModal}
+      className="absolute top-4 right-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-[#f7f3ed] text-black/80 shadow-md"
+      aria-label="Chiudi"
+    >
+      <X size={24} />
+    </button>
+
+    <div className="max-h-[92vh] overflow-y-auto">
+      {selectedPackage.image && (
+        <img
+          src={selectedPackage.image}
+          alt={selectedPackage.name}
+          className="block w-full h-auto object-cover rounded-t-[32px]"
+        />
+      )}
+
+      <div className="px-6 pt-8 pb-10 text-[#5f5a55]">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] block mb-3">
+          Dettagli Percorso
+        </span>
+
+        <h2 className="text-[42px] leading-[1.05] font-serif text-[#2c221c] mb-4">
+          {selectedPackage.name}
+        </h2>
+
+        {selectedPackage.price && (
+          <p className="text-2xl font-serif text-[#b08a57] mb-8">
+            {selectedPackage.price}
+          </p>
+        )}
+
+        {selectedPackage.forWho && (
+          <div className="mb-8">
+            <h3 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
+              Per chi è
+            </h3>
+            <p className="text-[17px] leading-relaxed">
+              {selectedPackage.forWho}
+            </p>
+          </div>
+        )}
+
+        {selectedPackage.problem && (
+          <div className="mb-8">
+            <h3 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
+              Problema che risolve
+            </h3>
+            <p className="text-[17px] leading-relaxed">
+              {selectedPackage.problem}
+            </p>
+          </div>
+        )}
+
+        {selectedPackage.description && (
+          <div className="mb-8">
+            <h3 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
+              Descrizione
+            </h3>
+            <p className="text-[17px] leading-relaxed">
+              {selectedPackage.description}
+            </p>
+          </div>
+        )}
+
+        {selectedPackage.benefits && selectedPackage.benefits.length > 0 && (
+          <div className="mb-8">
+            <h3 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-4">
+              Benefici
+            </h3>
+            <div className="space-y-3">
+              {selectedPackage.benefits.map((benefit: string, index: number) => (
+                <div key={index} className="flex items-start gap-3">
+                  <Check size={18} className="mt-1 shrink-0 text-[#b08a57]" />
+                  <p className="text-[16px] leading-relaxed">{benefit}</p>
                 </div>
-
-                {/* chiudi */}
-                <button
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 z-30 p-3 rounded-full bg-ivory/95 text-espresso shadow-lg"
-                >
-                  <X size={24} />
-                </button>
-
-                {/* contenuto vero */}
-                <div className="relative z-10 h-full overflow-y-auto">
-                  <div className="min-h-full px-6 pt-16 pb-8 text-ivory">
-                    <div className="max-w-xl">
-                      <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-3">
-                        Dettagli Percorso
-                      </span>
-
-                      <h2 className="text-4xl font-serif leading-tight mb-2">
-                        {selectedPackage.name}
-                      </h2>
-
-                      <p className="text-2xl text-gold font-serif mb-8">
-                        {selectedPackage.price}
-                      </p>
-
-                      <div className="space-y-8">
-                        <div>
-                          <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-2">
-                            Per chi è
-                          </h4>
-                          <p className="text-[18px] leading-relaxed text-ivory/95">
-                            {selectedPackage.forWho}
-                          </p>
-                        </div>
-
-                        <div>
-                          <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-2">
-                            Problema che risolve
-                          </h4>
-                          <p className="text-[18px] leading-relaxed text-ivory/95">
-                            {selectedPackage.problem}
-                          </p>
-                        </div>
-
-                        <div>
-                          <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-3">
-                            Cosa facciamo in salone
-                          </h4>
-                          <ul className="space-y-3">
-                            {selectedPackage.features.map((feature, i) => (
-                              <li
-                                key={i}
-                                className="flex items-start gap-3 text-[17px] leading-relaxed text-ivory/95"
-                              >
-                                <div className="w-1.5 h-1.5 rounded-full bg-gold mt-3 shrink-0" />
-                                <span>{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div className="p-5 rounded-3xl bg-white/10 border border-white/15 backdrop-blur-md">
-                          <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-2">
-                            Mantenimento a casa
-                          </h4>
-                          <p className="text-[16px] italic leading-relaxed text-ivory/95">
-                            {selectedPackage.homeCare}
-                          </p>
-                        </div>
-
-                        <div className="pt-2 pb-4">
-                          <a
-                            href={selectedPackage.whatsappUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-4 rounded-2xl bg-gold text-white text-[11px] uppercase tracking-widest font-bold flex items-center justify-center gap-3 shadow-xl"
-                          >
-                            PRENOTA QUESTO TRATTAMENTO
-                            <ArrowRight size={16} />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+              ))}
             </div>
+          </div>
+        )}
+
+        <a
+          href="#contatti"
+          onClick={closeModal}
+          className="inline-flex items-center gap-2 rounded-full bg-[#2c221c] px-6 py-4 text-sm font-medium text-white"
+        >
+          Prenota ora
+          <ArrowRight size={18} />
+        </a>
+      </div>
+    </div>
+  </motion.div>
+</div>
 
             {/* DESKTOP */}
             <div className="hidden md:flex absolute inset-0 items-center justify-center p-6">
