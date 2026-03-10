@@ -118,7 +118,7 @@ const PackagesSection: React.FC = () => {
                 <img 
                   src={selectedPackage.image} 
                   alt={selectedPackage.name}
-                  className="w-full h-32 object-cover"
+                  <div className="relative h-32 md:h-64 w-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-espresso/40 to-transparent md:hidden" />
               </div>
