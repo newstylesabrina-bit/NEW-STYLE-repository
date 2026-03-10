@@ -115,7 +115,7 @@ const PackagesSection: React.FC = () => {
 
               {/* Left Column: Image */}
               <div className="hidden md:block md:w-2/5 md:h-auto relative">
-              <img 
+                <img 
                   src={selectedPackage.image} 
                   alt={selectedPackage.name}
                   className="w-full h-full object-cover"
