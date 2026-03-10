@@ -115,10 +115,10 @@ const PackagesSection: React.FC = () => {
 
               {/* Left Column: Image */}
               <div className="hidden md:block md:w-2/5 md:h-auto relative">
-  <img 
-    src={selectedPackage.image} 
-    alt={selectedPackage.name}
-    className="w-full h-full object-cover"
+              <img 
+                  src={selectedPackage.image} 
+                  alt={selectedPackage.name}
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-espresso/40 to-transparent md:hidden" />
               </div>
