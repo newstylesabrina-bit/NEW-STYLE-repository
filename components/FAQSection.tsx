@@ -6,7 +6,7 @@ import LuxuryText from './LuxuryText';
 
 const FAQSection: React.FC = () => {
   return (
-    <section id="faq" className="py-24 border-t border-sand">
+    <section id="faq" className="py-12 md:py-20 border-t border-sand">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
           <div>
