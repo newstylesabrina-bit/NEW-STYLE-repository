@@ -11,7 +11,7 @@ const PackagesSection: React.FC = () => {
   const closeModal = () => setSelectedPackage(null);
 
   return (
-    <section id="pacchetti" className="py-12 md:py-20 bg-ivory relative overflow-hidden">
+   <section id="pacchetti" className="py-12 md:py-20 bg-ivory relative">
       <div className="absolute top-0 right-0 w-96 h-96 bg-sand/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
       <div className="container mx-auto px-6 relative z-10">
