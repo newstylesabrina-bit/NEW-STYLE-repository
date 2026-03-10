@@ -119,78 +119,77 @@ const PackagesSection: React.FC = () => {
             {/* MOBILE SOLO TESTO */}
             <div className="md:hidden absolute inset-0 z-10 flex items-center justify-center p-3">
               <motion.div
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 24 }}
-                transition={{ duration: 0.25 }}
-                className="relative w-full max-w-[420px] max-h-[88vh] rounded-[32px] bg-[#f4f0ea] shadow-2xl overflow-hidden"
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.2 }}
+                className="relative w-full max-w-[420px] bg-[#f4f0ea] rounded-[32px] shadow-2xl"
               >
                 <button
                   onClick={closeModal}
-                  className="absolute top-4 right-4 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-[#f7f3ed] text-black/80 shadow-md"
+                  className="absolute top-4 right-4 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-[#f7f3ed] text-black/80 shadow-md"
                   aria-label="Chiudi"
                 >
                   <X size={24} />
                 </button>
 
-                <div className="overflow-y-auto overflow-x-hidden max-h-[88vh]">
-                  <div className="px-6 pt-6 pb-12 text-[#5f5a55]">
-                    <h2 className="text-[34px] leading-[1.08] font-serif text-[#2c221c] mb-6 pr-14">
-                      {selectedPackage.name}
-                    </h2>
+                <div className="max-h-[88vh] overflow-y-auto overflow-x-hidden px-6 pt-6 pb-12 text-[#5f5a55]">
+                  <h2 className="text-[34px] leading-[1.08] font-serif text-[#2c221c] mb-6 pr-14">
+                    {selectedPackage.name}
+                  </h2>
 
-                    <div className="mb-7">
-                      <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
-                        Per chi è
-                      </h4>
-                      <p className="text-[16px] leading-relaxed">
-                        {selectedPackage.forWho}
-                      </p>
-                    </div>
-
-                    <div className="mb-7">
-                      <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
-                        Problema che risolve
-                      </h4>
-                      <p className="text-[16px] leading-relaxed">
-                        {selectedPackage.problem}
-                      </p>
-                    </div>
-
-                    <div className="mb-7">
-                      <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-4">
-                        Cosa facciamo in salone
-                      </h4>
-                      <div className="space-y-3">
-                        {selectedPackage.features.map((feature, i) => (
-                          <div key={i} className="flex items-start gap-3">
-                            <Check size={18} className="mt-1 shrink-0 text-[#b08a57]" />
-                            <p className="text-[16px] leading-relaxed">{feature}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mb-8 p-5 rounded-3xl bg-sand/30 border border-sand">
-                      <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
-                        Mantenimento a casa
-                      </h4>
-                      <p className="text-[15px] leading-relaxed italic text-[#5f5a55]">
-                        {selectedPackage.homeCare}
-                      </p>
-                    </div>
-
-                    <a
-                      href={selectedPackage.whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={closeModal}
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#2c221c] px-6 py-4 text-sm font-medium text-white"
-                    >
-                      Prenota questo trattamento
-                      <ArrowRight size={18} />
-                    </a>
+                  <div className="mb-7">
+                    <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
+                      Per chi è
+                    </h4>
+                    <p className="text-[16px] leading-relaxed">
+                      {selectedPackage.forWho}
+                    </p>
                   </div>
+
+                  <div className="mb-7">
+                    <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
+                      Problema che risolve
+                    </h4>
+                    <p className="text-[16px] leading-relaxed">
+                      {selectedPackage.problem}
+                    </p>
+                  </div>
+
+                  <div className="mb-7">
+                    <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-4">
+                      Cosa facciamo in salone
+                    </h4>
+
+                    <div className="space-y-3">
+                      {selectedPackage.features.map((feature, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <Check size={18} className="mt-1 shrink-0 text-[#b08a57]" />
+                          <p className="text-[16px] leading-relaxed">{feature}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mb-8 p-5 rounded-3xl bg-sand/30 border border-sand">
+                    <h4 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2c221c] mb-3">
+                      Mantenimento a casa
+                    </h4>
+                    <p className="text-[15px] leading-relaxed italic text-[#5f5a55]">
+                      {selectedPackage.homeCare}
+                    </p>
+                  </div>
+
+                  <a
+                    href={selectedPackage.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={closeModal}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#2c221c] px-6 py-4 text-sm font-medium text-white"
+                  >
+                    Prenota questo trattamento
+                    <ArrowRight size={18} />
+                  </a>
                 </div>
               </motion.div>
             </div>
