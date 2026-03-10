@@ -1,70 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react';
+
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, Sparkles, X, ArrowRight, ChevronDown } from 'lucide-react';
+import { Check, Sparkles, X, ArrowRight } from 'lucide-react';
 import { PACKAGES } from '../constants';
 import LuxuryText from './LuxuryText';
 import { Package } from '../types';
 
 const PackagesSection: React.FC = () => {
   const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
-  const [showScrollHint, setShowScrollHint] = useState(false);
-  const mobileScrollRef = useRef<HTMLDivElement | null>(null);
 
-  const closeModal = () => {
-    setSelectedPackage(null);
-    setShowScrollHint(false);
-  };
-
-  useEffect(() => {
-    if (!selectedPackage) return;
-
-    const checkScrollable = () => {
-      const el = mobileScrollRef.current;
-      if (!el) return;
-
-      const isScrollable = el.scrollHeight > el.clientHeight + 10;
-      const isAtTop = el.scrollTop < 10;
-
-      setShowScrollHint(isScrollable && isAtTop);
-    };
-
-    const timeout = setTimeout(checkScrollable, 120);
-
-    window.addEventListener('resize', checkScrollable);
-
-    return () => {
-      clearTimeout(timeout);
-      window.removeEventListener('resize', checkScrollable);
-    };
-  }, [selectedPackage]);
-
-  const handleMobileScroll = () => {
-    const el = mobileScrollRef.current;
-    if (!el) return;
-
-    if (el.scrollTop > 8) {
-      setShowScrollHint(false);
-    } else {
-      const isScrollable = el.scrollHeight > el.clientHeight + 10;
-      setShowScrollHint(isScrollable);
-    }
-  };
+  const closeModal = () => setSelectedPackage(null);
 
   return (
-    <section id="pacchetti" className="py-12 md:py-20 bg-ivory relative overflow-hidden">
+    <section id="pacchetti" className="py-24 bg-ivory relative overflow-hidden">
+      {/* Decorative background element */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-sand/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-
+      
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-          <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-4">
-            Esperienze Complete
-          </span>
-          <LuxuryText as="h2" className="text-4xl md:text-5xl mb-6">
-            I Nostri Percorsi
-          </LuxuryText>
-          <p className="text-stone font-light leading-relaxed">
-            Scegli il livello di cura più adatto alle tue esigenze. Ogni pacchetto è studiato
-            per offrire un&apos;esperienza di benessere totale.
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-4">Esperienze Complete</span>
+          <LuxuryText as="h2" className="text-4xl md:text-5xl mb-6">I Nostri Percorsi</LuxuryText>
+          <p className="text-stone font-light">
+            Scegli il livello di cura più adatto alle tue esigenze. Ogni pacchetto è studiato per offrire un'esperienza di benessere totale.
           </p>
         </div>
 
@@ -77,78 +34,63 @@ const PackagesSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
               className={`
-                relative p-8 md:p-10 rounded-[40px] border flex flex-col h-full transition-all duration-500
-                ${
-                  pkg.isPremium
-                    ? 'bg-espresso text-ivory border-gold shadow-2xl md:scale-105 z-10'
-                    : 'bg-white text-espresso border-sand shadow-sm hover:shadow-md'
+                relative p-10 rounded-[40px] border flex flex-col h-full transition-all duration-500
+                ${pkg.isPremium 
+                  ? 'bg-espresso text-ivory border-gold shadow-2xl scale-105 z-10' 
+                  : 'bg-white text-espresso border-sand shadow-sm hover:shadow-md'
                 }
               `}
             >
               {pkg.isPremium && (
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-gold text-white px-6 py-2 rounded-full text-[13px] md:text-[14px] uppercase tracking-[0.15em] font-bold flex items-center gap-2 shadow-xl whitespace-nowrap">
-                  <Sparkles size={18} />
-                  Consigliato
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gold text-white px-4 py-1 rounded-full text-[10px] uppercase tracking-widest font-bold flex items-center gap-2">
+                  <Sparkles size={12} /> Consigliato
                 </div>
               )}
 
               <div className="mb-8">
                 <h3 className="font-serif text-3xl mb-2">{pkg.name}</h3>
-                <p
-                  className={`text-sm leading-relaxed ${
-                    pkg.isPremium ? 'text-ivory/70' : 'text-stone'
-                  }`}
-                >
+                <p className={`text-sm ${pkg.isPremium ? 'text-ivory/60' : 'text-stone'}`}>
                   {pkg.description}
                 </p>
               </div>
 
               <div className="mb-8">
                 <span className="text-4xl font-serif">{pkg.price}</span>
-                {pkg.price.includes('+') && (
-                  <span className="text-sm ml-1 opacity-60">a partire da</span>
-                )}
+                {pkg.price.includes('+') && <span className="text-sm ml-1 opacity-60">a partire da</span>}
               </div>
 
               <div className="flex-1 space-y-4 mb-10">
                 {pkg.features.map((feature, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <div
-                      className={`mt-1 p-0.5 rounded-full ${
-                        pkg.isPremium ? 'bg-gold/20 text-gold' : 'bg-sand text-espresso'
-                      }`}
-                    >
+                    <div className={`mt-1 p-0.5 rounded-full ${pkg.isPremium ? 'bg-gold/20 text-gold' : 'bg-sand text-espresso'}`}>
                       <Check size={12} />
                     </div>
-                    <span className="text-sm font-light leading-relaxed">{feature}</span>
+                    <span className="text-sm font-light">{feature}</span>
                   </div>
                 ))}
               </div>
 
               <button
-                onClick={() => {
-                  setSelectedPackage(pkg);
-                  setShowScrollHint(false);
-                }}
+                onClick={() => setSelectedPackage(pkg)}
                 className={`
                   w-full py-4 rounded-2xl text-center text-[10px] uppercase tracking-widest font-bold transition-all flex items-center justify-center gap-2
-                  ${
-                    pkg.isPremium
-                      ? 'bg-gold text-white hover:bg-white hover:text-espresso'
-                      : 'bg-espresso text-ivory hover:bg-gold'
+                  ${pkg.isPremium 
+                    ? 'bg-gold text-white hover:bg-white hover:text-espresso' 
+                    : 'bg-espresso text-ivory hover:bg-gold'
                   }
                 `}
               >
-                Scopri di più
+                PRENOTA ORA
               </button>
             </motion.div>
           ))}
         </div>
       </div>
 
+      {/* Modal */}
       <AnimatePresence>
         {selectedPackage && (
-          <div className="fixed inset-0 z-[100]">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -156,219 +98,81 @@ const PackagesSection: React.FC = () => {
               onClick={closeModal}
               className="absolute inset-0 bg-espresso/80 backdrop-blur-sm"
             />
-
-            {/* MOBILE FULL SCREEN */}
-            <div className="md:hidden absolute inset-0">
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 24 }}
-                transition={{ duration: 0.25 }}
-                className="relative w-full h-full"
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-5xl bg-ivory rounded-[40px] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={closeModal}
+                className="absolute top-6 right-6 z-10 p-2 rounded-full bg-white md:bg-white/20 backdrop-blur-md text-espresso hover:bg-gold hover:text-white transition-all shadow-lg border border-sand/20"
               >
-                <div className="absolute inset-0">
-                  <img
-                    src={selectedPackage.image}
-                    alt={selectedPackage.name}
-                    className="w-full h-full object-cover scale-110"
-                  />
-                  <div className="absolute inset-0 bg-espresso/78 backdrop-blur-xl" />
+                <X size={24} />
+              </button>
+
+              {/* Left Column: Image */}
+              <div className="w-full md:w-2/5 h-32 md:h-auto relative">
+                <img 
+                  src={selectedPackage.image} 
+                  alt={selectedPackage.name}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-espresso/40 to-transparent md:hidden" />
+              </div>
+
+              {/* Right Column: Content */}
+              <div className="w-full md:w-3/5 p-8 md:p-12 overflow-y-auto custom-scrollbar">
+                <div className="mb-8">
+                  <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-2">Dettagli Percorso</span>
+                  <h2 className="text-4xl md:text-5xl font-serif text-espresso mb-2 leading-tight">{selectedPackage.name}</h2>
+                  <p className="text-2xl text-gold font-serif">{selectedPackage.price}</p>
                 </div>
 
-                <button
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 z-30 p-3 rounded-full bg-ivory/95 text-espresso hover:bg-gold hover:text-white transition-all shadow-lg"
-                >
-                  <X size={24} />
-                </button>
-
-                <div
-                  ref={mobileScrollRef}
-                  onScroll={handleMobileScroll}
-                  className="relative z-10 h-full overflow-y-auto"
-                >
-                  <div className="min-h-full bg-ivory/97 backdrop-blur-xl px-6 pt-16 pb-24">
-                    <div className="mb-8 pr-14">
-                      <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-2">
-                        Dettagli Percorso
-                      </span>
-                      <h2 className="text-4xl font-serif text-espresso mb-2 leading-tight">
-                        {selectedPackage.name}
-                      </h2>
-                      <p className="text-xl text-gold font-serif">{selectedPackage.price}</p>
-                    </div>
-
-                    <div className="space-y-7">
-                      <div>
-                        <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-2">
-                          Per chi è
-                        </h4>
-                        <p className="text-stone leading-relaxed text-[17px]">
-                          {selectedPackage.forWho}
-                        </p>
-                      </div>
-
-                      <div>
-                        <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-2">
-                          Problema che risolve
-                        </h4>
-                        <p className="text-stone leading-relaxed text-[17px]">
-                          {selectedPackage.problem}
-                        </p>
-                      </div>
-
-                      <div>
-                        <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-2">
-                          Cosa facciamo in salone
-                        </h4>
-                        <ul className="space-y-3">
-                          {selectedPackage.features.map((feature, i) => (
-                            <li
-                              key={i}
-                              className="flex items-start gap-3 text-[16px] text-stone leading-relaxed"
-                            >
-                              <div className="w-1.5 h-1.5 rounded-full bg-gold mt-2.5 shrink-0" />
-                              <span>{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="p-5 rounded-3xl bg-sand/40 border border-sand">
-                        <h4 className="text-[10px] uppercase tracking-widest font-bold text-espresso mb-2">
-                          Mantenimento a casa
-                        </h4>
-                        <p className="text-[16px] text-stone italic leading-relaxed">
-                          {selectedPackage.homeCare}
-                        </p>
-                      </div>
-
-                      <div className="pt-2">
-                        <a
-                          href={selectedPackage.whatsappUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full py-4 rounded-2xl bg-espresso text-ivory text-[11px] uppercase tracking-widest font-bold flex items-center justify-center gap-3 shadow-xl"
-                        >
-                          PRENOTA QUESTO TRATTAMENTO
-                          <ArrowRight size={16} />
-                        </a>
-                      </div>
-                    </div>
+                <div className="space-y-8">
+                  <div>
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-3">Per chi è</h4>
+                    <p className="text-stone font-light leading-relaxed">{selectedPackage.forWho}</p>
                   </div>
 
-                  {showScrollHint && (
-                    <>
-                      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-ivory/95 via-ivory/70 to-transparent" />
-                      <div className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center">
-                        <span className="text-[10px] uppercase tracking-[0.25em] text-stone/70 mb-2">
-                          Scorri
-                        </span>
-                        <ChevronDown
-                          size={24}
-                          className="text-gold animate-bounce drop-shadow-sm"
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-              </motion.div>
-            </div>
-
-            {/* DESKTOP MODAL */}
-            <div className="hidden md:flex absolute inset-0 items-center justify-center p-6">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96, y: 20 }}
-                className="relative w-full max-w-5xl rounded-[40px] overflow-hidden shadow-2xl max-h-[90vh] bg-ivory"
-              >
-                <button
-                  onClick={closeModal}
-                  className="absolute top-6 right-6 z-30 p-3 rounded-full bg-ivory/95 text-espresso hover:bg-gold hover:text-white transition-all shadow-lg"
-                >
-                  <X size={24} />
-                </button>
-
-                <div className="flex w-full max-h-[90vh]">
-                  <div className="w-full md:w-2/5 h-64 md:h-auto relative">
-                    <img
-                      src={selectedPackage.image}
-                      alt={selectedPackage.name}
-                      className="w-full h-full object-cover"
-                    />
+                  <div>
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-3">Problema che risolve</h4>
+                    <p className="text-stone font-light leading-relaxed">{selectedPackage.problem}</p>
                   </div>
 
-                  <div className="w-full md:w-3/5 p-8 md:p-12 overflow-y-auto custom-scrollbar">
-                    <div className="mb-8">
-                      <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-2">
-                        Dettagli Percorso
-                      </span>
-                      <h2 className="text-4xl md:text-5xl font-serif text-espresso mb-2">
-                        {selectedPackage.name}
-                      </h2>
-                      <p className="text-2xl text-gold font-serif">{selectedPackage.price}</p>
-                    </div>
+                  <div>
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-3">Cosa facciamo in salone</h4>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {selectedPackage.features.map((feature, i) => (
+                        <li key={i} className="flex items-center gap-3 text-sm text-stone">
+                          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                    <div className="space-y-8">
-                      <div>
-                        <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-3">
-                          Per chi è
-                        </h4>
-                        <p className="text-stone font-light leading-relaxed">
-                          {selectedPackage.forWho}
-                        </p>
-                      </div>
+                  <div className="p-6 rounded-3xl bg-sand/30 border border-sand">
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold text-espresso mb-2">Mantenimento a casa</h4>
+                    <p className="text-sm text-stone italic">{selectedPackage.homeCare}</p>
+                  </div>
 
-                      <div>
-                        <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-3">
-                          Problema che risolve
-                        </h4>
-                        <p className="text-stone font-light leading-relaxed">
-                          {selectedPackage.problem}
-                        </p>
-                      </div>
-
-                      <div>
-                        <h4 className="text-[10px] uppercase tracking-widest font-bold text-gold mb-3">
-                          Cosa facciamo in salone
-                        </h4>
-                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          {selectedPackage.features.map((feature, i) => (
-                            <li key={i} className="flex items-center gap-3 text-sm text-stone">
-                              <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="p-6 rounded-3xl bg-sand/30 border border-sand">
-                        <h4 className="text-[10px] uppercase tracking-widest font-bold text-espresso mb-2">
-                          Mantenimento a casa
-                        </h4>
-                        <p className="text-sm text-stone italic">{selectedPackage.homeCare}</p>
-                      </div>
-
-                      <div className="pt-4">
-                        <a
-                          href={selectedPackage.whatsappUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full py-5 rounded-2xl bg-espresso text-ivory text-[12px] uppercase tracking-widest font-bold flex items-center justify-center gap-3 hover:bg-gold transition-all shadow-xl group"
-                        >
-                          PRENOTA QUESTO TRATTAMENTO
-                          <ArrowRight
-                            size={18}
-                            className="group-hover:translate-x-1 transition-transform"
-                          />
-                        </a>
-                      </div>
-                    </div>
+                  <div className="pt-4">
+                    <a
+                      href={selectedPackage.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-5 rounded-2xl bg-espresso text-ivory text-[12px] uppercase tracking-widest font-bold flex items-center justify-center gap-3 hover:bg-gold transition-all shadow-xl group"
+                    >
+                      PRENOTA QUESTO TRATTAMENTO
+                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </a>
                   </div>
                 </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           </div>
         )}
       </AnimatePresence>
