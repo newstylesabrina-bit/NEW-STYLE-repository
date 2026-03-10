@@ -10,7 +10,7 @@ const ServicesSection: React.FC = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   return (
-    <section className="py-24">
+    <section className="py-12 md:py-20">
       <div className="container mx-auto px-6">
         <div id="servizi" className="text-center max-w-2xl mx-auto mb-16 scroll-mt-32">
           <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-4">Percorsi Benessere</span>
