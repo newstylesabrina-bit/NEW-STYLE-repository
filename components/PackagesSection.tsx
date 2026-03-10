@@ -122,7 +122,7 @@ const PackagesSection: React.FC = () => {
             >
               <button
                 onClick={closeModal}
-                className="absolute top-5 right-5 z-30 p-3 rounded-full bg-ivory/95 text-espresso hover:bg-gold hover:text-white transition-all shadow-lg"
+                className="absolute top-7 right-7 z-30 p-3 rounded-full bg-ivory/95 text-espresso hover:bg-gold hover:text-white transition-all shadow-lg"
               >
                 <X size={24} />
               </button>
@@ -134,11 +134,11 @@ const PackagesSection: React.FC = () => {
                   alt={selectedPackage.name}
                   className="w-full h-full object-cover scale-110"
                 />
-                <div className="absolute inset-0 bg-espresso/65 backdrop-blur-lg" />
+                <div className="absolute inset-0 bg-espresso/70 backdrop-blur-lg" />
               </div>
 
-              <div className="md:hidden relative z-10 h-[92vh] flex items-center justify-center p-4">
-                <div className="w-full h-[84vh] bg-ivory/97 backdrop-blur-xl rounded-[30px] shadow-2xl overflow-y-auto px-6 pt-8 pb-8">
+              <div className="md:hidden absolute inset-0 z-10 p-4">
+                <div className="w-full h-full bg-ivory/96 backdrop-blur-xl rounded-[30px] shadow-2xl overflow-y-auto px-6 pt-20 pb-8">
                   <div className="mb-6 pr-14">
                     <span className="text-gold font-bold uppercase tracking-[0.3em] text-[10px] block mb-2">
                       Dettagli Percorso
