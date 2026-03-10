@@ -1,5 +1,11 @@
 
-import React from 'react';
+import React from "react";
+
+const FloatingMobileCTA: React.FC = () => {
+  return null;
+};
+
+export default FloatingMobileCTA;
 import { motion } from 'framer-motion';
 
 const FloatingMobileCTA: React.FC = () => {
