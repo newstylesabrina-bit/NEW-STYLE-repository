@@ -43,7 +43,7 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contatti" className="py-24 bg-sand/10">
+   <section id="contatti" className="py-12 md:py-20 bg-sand/10">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div>
