@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative"
+          className="relative hidden lg:block"
         >
           <div className="aspect-[4/4] mt-12 md:mt-16 rounded-[40px] overflow-hidden shadow-2xl relative">
             <img 
