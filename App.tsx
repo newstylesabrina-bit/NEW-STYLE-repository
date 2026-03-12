@@ -33,13 +33,6 @@ const App: React.FC = () => {
   const isLegalPage = location.pathname === '/privacy-policy' || location.pathname === '/cookie-policy';
 
   useEffect(() => {
-    const GA_ID = 'G-VDJFPNQSWQ';
-
-    const script1 = document.createElement('script');
-    script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-    script1.async = true;
-    document.head.appendChild(script1);
-
     const script2 = document.createElement('script');
     script2.innerHTML = `
       window.dataLayer = window.dataLayer || [];
