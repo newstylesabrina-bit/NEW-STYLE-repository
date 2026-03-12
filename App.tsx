@@ -1,7 +1,10 @@
+
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import ElegantBackground from './components/ElegantBackground';
+import CustomCursor from './components/CustomCursor';
 import AIConsultantChat from './components/AIConsultantChat';
+import FloatingMobileCTA from './components/FloatingMobileCTA';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import MetodoSection from './components/MetodoSection';
@@ -32,13 +35,33 @@ const App: React.FC = () => {
   const location = useLocation();
   const isLegalPage = location.pathname === '/privacy-policy' || location.pathname === '/cookie-policy';
 
+  useEffect(() => {
+    const GA_ID = 'G-VDJFPNQSWQ';
+
+    const script1 = document.createElement('script');
+    script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    script1.async = true;
+    document.head.appendChild(script1);
+
+    const script2 = document.createElement('script');
+    script2.innerHTML = `     window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', '${GA_ID}');
+  `;
+    document.head.appendChild(script2);
+  }, []);
+
   return (
     <div className="relative min-h-screen selection:bg-gold/30 selection:text-espresso">
+      <CustomCursor />
       <ElegantBackground />
       <AIConsultantChat />
-
+      <FloatingMobileCTA />
+      
       {!isLegalPage && <Navbar />}
-
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
