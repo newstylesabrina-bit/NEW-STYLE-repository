@@ -21,7 +21,8 @@ const ServicesSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Desktop Version (Grid + Modal) */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {SERVICES.map((service) => (
             <motion.div
               key={service.id}
@@ -49,12 +50,73 @@ const ServicesSection: React.FC = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Mobile Version (Full Content List) */}
+        <div className="block md:hidden space-y-12">
+          {SERVICES.map((service, idx) => (
+            <motion.div
+              key={service.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-white rounded-[32px] overflow-hidden border border-sand shadow-lg flex flex-col"
+            >
+              <div className="h-64 relative">
+                <img 
+                  src={service.image} 
+                  alt={service.title} 
+                  className="w-full h-full object-cover" 
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-espresso/80 to-transparent">
+                  <h3 className="font-serif text-2xl text-ivory">{service.title}</h3>
+                </div>
+              </div>
+              <div className="p-8 space-y-8">
+                <div>
+                  <h4 className="text-espresso font-bold uppercase tracking-widest text-[10px] mb-2">Per chi è</h4>
+                  <p className="text-stone text-sm leading-relaxed">{service.forWho}</p>
+                </div>
+                <div>
+                  <h4 className="text-espresso font-bold uppercase tracking-widest text-[10px] mb-2">Problema che risolve</h4>
+                  <p className="text-stone text-sm leading-relaxed">{service.problem}</p>
+                </div>
+                <div>
+                  <h4 className="text-espresso font-bold uppercase tracking-widest text-[10px] mb-2">Cosa facciamo in salone</h4>
+                  <ul className="space-y-3">
+                    {service.steps.map((step, i) => (
+                      <li key={i} className="flex items-start gap-3 text-sm text-stone">
+                        <Check size={14} className="text-gold mt-0.5 shrink-0" />
+                        {step}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-sand/30 p-6 rounded-2xl border border-sand/50">
+                  <h4 className="text-espresso font-bold uppercase tracking-widest text-[10px] mb-1">Mantenimento a casa</h4>
+                  <p className="text-stone text-xs italic leading-relaxed">{service.maintenance}</p>
+                </div>
+                <div className="pt-2">
+                  <a 
+                    href={service.bookingUrl || "https://page.fo/Consulenza-Personalizzata"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-espresso text-ivory py-5 rounded-2xl text-center font-bold uppercase tracking-widest text-[11px] hover:bg-gold transition-colors flex items-center justify-center gap-2"
+                  >
+                    Prenota questo trattamento
+                    <ChevronRight size={16} />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
-      {/* Service Modal */}
+      {/* Service Modal (Desktop Only) */}
       <AnimatePresence>
         {selectedService && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+          <div className="fixed inset-0 z-[100] hidden md:flex items-center justify-center p-6">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
