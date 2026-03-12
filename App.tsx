@@ -32,19 +32,6 @@ const App: React.FC = () => {
   const location = useLocation();
   const isLegalPage = location.pathname === '/privacy-policy' || location.pathname === '/cookie-policy';
 
-  useEffect(() => 
-    {
-    const script2 = document.createElement('script');
-    script2.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', '${GA_ID}');
-    `;
-    document.head.appendChild(script2);
-  }, []);
-
   return (
     <div className="relative min-h-screen selection:bg-gold/30 selection:text-espresso">
       <ElegantBackground />
