@@ -32,7 +32,8 @@ const App: React.FC = () => {
   const location = useLocation();
   const isLegalPage = location.pathname === '/privacy-policy' || location.pathname === '/cookie-policy';
 
-  useEffect(() => {
+  useEffect(() => 
+    {
     const script2 = document.createElement('script');
     script2.innerHTML = `
       window.dataLayer = window.dataLayer || [];
